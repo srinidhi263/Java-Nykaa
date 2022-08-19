@@ -6,10 +6,13 @@ public class NykaaApp {
         Scanner sc = new Scanner(System.in);
         int totalAmount = 0;
         System.out.println("Nykaa");
+        System.out.println("Enter phone number: ");
+        long phoneNumber = sc.nextLong();
+        System.out.println("Enter name: ");
+        String name = sc.next();
         while (true) {
             ArrayList<Category> categories = new ArrayList<>();
             //skin
-
             Category skinCategory = new Category(1, "Skin");
             ArrayList<Product> skinProducts = new ArrayList<>();
             skinProducts.add(new Product(1, "Toner", 450));
@@ -45,42 +48,34 @@ public class NykaaApp {
             makeCategory.setProducts(makeProducts);
             categories.add(makeCategory);
 
-
-            System.out.println("Categories:" + " \n Press 5 to exit!");
-
+            System.out.println("Categories:");
             categories.forEach(category -> {
                 System.out.println(category.getId() + "." + category.getName());
             });
-
             System.out.println("enter your choice: ");
-
             int catChoice = sc.nextInt();
             if (catChoice == 5) {
-
                 System.out.println("Exit");
                 break;
-
             }
+            //category
             Category selectedCategory = categories.get(catChoice - 1);
-
             selectedCategory.getProducts().forEach(product -> {
                 System.out.println(product.getId() + "." + product.getProductName());
             });
-
+            System.out.println("press 5 to exit:");
+            //product
             System.out.println("enter your product: ");
             int productChoice = sc.nextInt();
             Product selectedProduct = selectedCategory.getProducts().get(productChoice - 1);
             System.out.println(selectedProduct.getProductName() + " - " + selectedProduct.getPrice());
-
             int amount = selectedProduct.getPrice();
-        totalAmount = totalAmount + amount;
+            totalAmount = totalAmount + amount;
         }
+        //total amount
         System.out.println("Total amount = " + totalAmount);
         System.out.println(" Confirm purchase ?: ");
         String str = sc.next();
         System.out.println("Thank you for your purchase!");
-
-
     }
-
 }
